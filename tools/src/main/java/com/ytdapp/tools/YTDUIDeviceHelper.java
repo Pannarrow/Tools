@@ -11,6 +11,9 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.WindowManager;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -59,6 +62,7 @@ public class YTDUIDeviceHelper {
     private static double sBatteryCapacity = -1;
     private static int sCpuCoreCount = -1;
     private static boolean isInfoReaded = false;
+    private static Boolean isPad = null;
 
     private static void checkReadInfo(){
         if(isInfoReaded){
@@ -443,5 +447,31 @@ public class YTDUIDeviceHelper {
         }
         if (name != null) name = name.toLowerCase();
         return name;
+    }
+
+    /**
+     * 是否是平板
+     * @param context
+     * @return
+     */
+    public static boolean idPad(Context context) {
+        if (isPad != null) {
+            return isPad;
+        }
+        boolean result = (context.getResources().getConfiguration().screenLayout
+                & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        if (result) {
+            isPad = true;
+        } else {
+            WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            DisplayMetrics dm = new DisplayMetrics();
+            display.getMetrics(dm);
+            double x = Math.pow(dm.widthPixels / dm.xdpi, 2);
+            double y = Math.pow(dm.heightPixels / dm.ydpi, 2);
+            double screenInches = Math.sqrt(x + y); // 屏幕尺寸
+            isPad = screenInches >= 7.0;
+        }
+        return isPad;
     }
 }

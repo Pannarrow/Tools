@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
@@ -58,5 +59,14 @@ public class ContextUtil {
      */
     public static int getMipmapId(String resName) {
         return context.getResources().getIdentifier(resName, "mipmap", context.getPackageName());
+    }
+
+    /**
+     * 获取Dimens资源
+     * @param dimenId
+     * @return
+     */
+    public static float getDimension(@DimenRes int dimenId) {
+        return context.getResources().getDimension(dimenId);
     }
 }
