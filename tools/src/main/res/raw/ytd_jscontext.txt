@@ -1,0 +1,191 @@
+LN10 = Math.LN10;
+LN2 = Math.LN2;
+LOG2E = Math.LOG2E;
+LOG10E = Math.LOG10E;
+PI = Math.PI;
+pi = Math.PI;
+Pi = Math.PI;
+SQRT1_2 = Math.SQRT1_2;
+SQRT2 = Math.SQRT2;
+SQRT3 = Math.sqrt(3.0);
+SQRT1_3 = 1.0 / SQRT3;
+MU0 = 4.0e-7*PI;
+PI2    = PI * 2.0;
+PI2_3 = PI * 2.0 / 3.0;
+PI4_3 = PI * 4.0 / 3.0;
+PI_2 = 0.5*Math.PI;
+PI_4 = 0.25*Math.PI;
+PI_3 = Math.PI / 3.0;
+PI_6 = Math.PI / 6.0;
+
+
+Rad2Degree = 57.295779513082320876798154814105;
+
+Degree2Rad = 0.01745329251994329576923690768489;
+
+function abs(x) {
+	return Math.abs(x);
+}
+
+function acos(x) {
+    return (x>=1.0?0.0:(x<=-1?Math.PI:Math.acos(x))) ;
+}
+
+function asin(x) {
+    return (x>=1.0?PI_2:(x<=-1?-PI_2:Math.asin(x))) ;
+}
+
+function atan(x) {
+	return Math.atan(x);
+}
+
+function atan2(y, x) {
+	return Math.atan2(y, x);
+}
+
+function ceil(x) {
+	return Math.ceil(x);
+}
+
+function cos(x) {
+	return Math.cos(x);
+}
+
+function exp(x) {
+	return Math.exp(x);
+}
+
+function floor(x) {
+	return Math.floor(x);
+}
+
+function ln(x) {
+	return Math.log(x);
+}
+
+function log10(x) {
+    return 0.4342944819*Math.log(x);
+}
+
+function max(x,y,z) {
+    if (z===undefined)
+        return Math.max(x,y);
+    else
+        return Math.max(x,y,z);
+}
+
+function min(x,y,z) {
+    if (z===undefined)
+        return Math.min(x,y);
+    else
+        return Math.min(x,y,z);
+}
+
+function pow(x, y) {
+	return Math.pow(x, y);
+}
+
+function random() {
+	return Math.random();
+}
+
+function round(x) {
+	return Math.round(x);
+}
+
+function sin(x) {
+	return Math.sin(x);
+}
+
+function sqrt(x) {
+	return Math.sqrt(x);
+}
+
+function tan(x) {
+	return Math.tan(x);
+}
+
+function iif(x,y,z) {
+	return x?y:z;
+}
+
+function acosd(x) {
+    return (x>=1.0?0.0:(x<=-1?180:Math.acos(x) * Rad2Degree)) ;
+}
+
+function asind(x) {
+    return (x>=1.0?90:(x<=-1?-90:Math.asin(x) * Rad2Degree)) ;
+}
+
+function atand(x) {
+	return Math.atan(x) * Rad2Degree;
+}
+
+function atan2d(y,x) {
+	return Math.atan2(y,x) * Rad2Degree;
+}
+
+function sind(x) {
+	return Math.sin(x*Degree2Rad);
+}
+
+function cosd(x) {
+	return Math.cos(x*Degree2Rad);
+}
+
+function tand(x) {
+	return Math.tan(x*Degree2Rad);
+}
+
+function gcd(a, b)
+{
+    var c;
+    if(0 == a )
+    {
+        return b;
+    }
+    if( 0 == b)
+    {
+        return a;
+    }
+    if (a > b)
+    {
+        c=a;
+        a=b;
+        b=c;
+    }
+    for(c = a % b ; c > 0  ; c = a % b)
+    {
+        a = b;
+        b = c;
+    }
+    return b;
+}
+
+function lcm(a, b)
+{
+    var g = gcd(a,b);
+    if (g>0)
+    {
+        return a*b/g;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+function square(x)
+{
+	return x*x;
+}
+
+function cube(x)
+{
+	return x*x*x;
+}
+
+function caculateFormula(x)
+{
+    return eval(x);
+}
