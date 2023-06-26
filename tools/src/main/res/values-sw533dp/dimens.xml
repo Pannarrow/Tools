@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<dimen name="common_margin">@dimen/dp_15</dimen>
+	<dimen name="card_common_margin_left">@dimen/dp_15</dimen>
 	<dimen name="dp_m_60">-88.8333dp</dimen>
 	<dimen name="dp_m_30">-44.4167dp</dimen>
 	<dimen name="dp_m_20">-29.6111dp</dimen>
@@ -24,6 +24,7 @@
 	<dimen name="dp_5">7.4028dp</dimen>
 	<dimen name="dp_6">8.8833dp</dimen>
 	<dimen name="dp_7">10.3639dp</dimen>
+	<dimen name="dp_7_5">11.1042dp</dimen>
 	<dimen name="dp_8">11.8444dp</dimen>
 	<dimen name="dp_9">13.3250dp</dimen>
 	<dimen name="dp_10">14.8056dp</dimen>
@@ -121,6 +122,7 @@
 	<dimen name="dp_102">151.0167dp</dimen>
 	<dimen name="dp_103">152.4972dp</dimen>
 	<dimen name="dp_104">153.9778dp</dimen>
+	<dimen name="dp_104_5">154.7181dp</dimen>
 	<dimen name="dp_105">155.4583dp</dimen>
 	<dimen name="dp_106">156.9389dp</dimen>
 	<dimen name="dp_107">158.4194dp</dimen>
@@ -151,6 +153,7 @@
 	<dimen name="dp_132">195.4333dp</dimen>
 	<dimen name="dp_133">196.9139dp</dimen>
 	<dimen name="dp_134">198.3944dp</dimen>
+	<dimen name="dp_134_5">199.1347dp</dimen>
 	<dimen name="dp_135">199.8750dp</dimen>
 	<dimen name="dp_136">201.3556dp</dimen>
 	<dimen name="dp_137">202.8361dp</dimen>
@@ -208,6 +211,7 @@
 	<dimen name="dp_189">279.8250dp</dimen>
 	<dimen name="dp_190">281.3056dp</dimen>
 	<dimen name="dp_191">282.7861dp</dimen>
+	<dimen name="dp_191_25">283.1562dp</dimen>
 	<dimen name="dp_192">284.2667dp</dimen>
 	<dimen name="dp_193">285.7472dp</dimen>
 	<dimen name="dp_194">287.2278dp</dimen>
