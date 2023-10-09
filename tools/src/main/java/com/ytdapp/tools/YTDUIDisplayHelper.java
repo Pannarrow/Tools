@@ -350,7 +350,7 @@ public class YTDUIDisplayHelper {
                 return context.getResources().getDimensionPixelSize(x);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return 0;
     }
@@ -538,7 +538,7 @@ public class YTDUIDisplayHelper {
             hasNavBarMethod.setAccessible(true);
             haveNav = (Boolean) hasNavBarMethod.invoke(iWindowManager);
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return haveNav;
     }

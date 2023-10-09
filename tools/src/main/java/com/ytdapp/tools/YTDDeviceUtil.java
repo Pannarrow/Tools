@@ -2,6 +2,7 @@ package com.ytdapp.tools;
 
 import android.content.Context;
 import android.media.MediaDrm;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 
@@ -54,7 +55,9 @@ public class YTDDeviceUtil {
             UUID uuid = new UUID(-0x121074568629b532L, -0x5c37d8232ae2de13L);
             MediaDrm drm = new MediaDrm(uuid);
             byte[] array = drm.getPropertyByteArray(MediaDrm.PROPERTY_DEVICE_UNIQUE_ID);
-            drm.close();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                drm.close();
+            }
             return new String(array);
         } catch (Exception e) {
             YTDLog.log(e);

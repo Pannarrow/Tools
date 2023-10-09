@@ -90,7 +90,7 @@ public class YTDUINotchHelper {
             int hasNotch = (int) getMethod.invoke(null, MIUI_NOTCH, 0);
             return hasNotch == 1;
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return false;
     }

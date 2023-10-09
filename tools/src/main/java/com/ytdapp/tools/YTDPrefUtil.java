@@ -42,6 +42,18 @@ public class YTDPrefUtil {
      */
     private static final String KEY_DEVICE_ID = "KEY_DEVICE_ID";
 
+    /**
+     * 记录智能语音sessionid
+     */
+    private static final String KEY_SESSION_ID = "KEY_SESSION_ID";
+
+    public static void clearAll() {
+        if (getBase() == null) {
+            return;
+        }
+        getBase().edit().clear().apply();
+    }
+
     private static SharedPreferences getBase() {
         Context context = ContextUtil.getContext();
         return context.getSharedPreferences(SharedPreferencesKey, Context.MODE_PRIVATE);
@@ -153,6 +165,10 @@ public class YTDPrefUtil {
         return getSearchHistory(SEARCH_HISTORY_KEY);
     }
 
+    public static void clearSearchHistory() {
+        removeValue(SEARCH_HISTORY_KEY);
+    }
+
     public static void addSearchOrderHistory(String searchValue) {
         addSearchHistory(SEARCH_ORDER_HISTORY_KEY, searchValue, 10);
     }
@@ -225,10 +241,22 @@ public class YTDPrefUtil {
     }
 
     public static String getDeviceID() {
-        return getString("");
+        return getString(KEY_DEVICE_ID);
     }
 
     public static void setDeviceID(String deviceID) {
-        setValue("", deviceID);
+        setValue(KEY_DEVICE_ID, deviceID);
+    }
+
+    public static String getSessionID() {
+        return getString(KEY_SESSION_ID);
+    }
+
+    public static void setSessionID(String sessionID) {
+        setValue(KEY_SESSION_ID, sessionID);
+    }
+
+    public static void clearSessionID() {
+        removeValue(KEY_SESSION_ID);
     }
 }

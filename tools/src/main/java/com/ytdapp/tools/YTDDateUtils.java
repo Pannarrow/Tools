@@ -362,8 +362,8 @@ public class YTDDateUtils {
      * 二个小时时间间的差值,必须保证二个时间都是"HH:MM"的格式，返回字符型的分钟
      */
     public static String getTwoHour(String st1, String st2) {
-        String[] kk = null;
-        String[] jj = null;
+        String[] kk;
+        String[] jj;
         kk = st1.split(":");
         jj = st2.split(":");
         if (YTDParseUtil.parseInt(kk[0]) < YTDParseUtil.parseInt(jj[0]))
@@ -383,7 +383,7 @@ public class YTDDateUtils {
      */
     public static String getTwoDay(String sj1, String sj2) {
         SimpleDateFormat myFormatter = new SimpleDateFormat(DATE_PATTERN_1, Locale.getDefault());
-        long day = 0;
+        long day;
         try {
             Date date = myFormatter.parse(sj1);
             Date mydate = myFormatter.parse(sj2);
@@ -416,7 +416,7 @@ public class YTDDateUtils {
     public static String getNextDay(String nowdate, String delay) {
         try {
             SimpleDateFormat format = new SimpleDateFormat(DATE_PATTERN_1, Locale.getDefault());
-            String mdate = "";
+            String mdate;
             Date d = strToDate(nowdate);
             long myTime = (d.getTime() / 1000) + YTDParseUtil.parseInt(delay) * 24L * 60 * 60;
             d.setTime(myTime * 1000);
@@ -574,7 +574,7 @@ public class YTDDateUtils {
     }
 
     public static String getWeekStr(String dateStr) {
-        String str = "";
+        String str;
         str = getWeek(dateStr);
         if ("1".equals(str)) {
             str = "星期日";

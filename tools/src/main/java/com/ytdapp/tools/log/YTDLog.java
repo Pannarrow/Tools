@@ -46,6 +46,7 @@ public class YTDLog {
     }
 
     public static void logToSD(String tag, String message) {
+        i(tag, message);
         if (DEBUG ) {
             try {
                 writeToFile('I', tag, message);

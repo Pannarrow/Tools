@@ -1,6 +1,8 @@
 package com.ytdapp.tools;
 
 
+import com.ytdapp.tools.log.YTDLog;
+
 import java.util.Map;
 
 import javax.script.Invocable;
@@ -20,7 +22,7 @@ public class YTDScriptEngineManager {
         try {
             scriptEngine.eval(text);
         } catch (ScriptException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
     }
 
@@ -47,7 +49,7 @@ public class YTDScriptEngineManager {
                 try {
                     scriptEngine.eval("var "+key+"="+(String) variables.get(key)+";");
                 } catch (ScriptException e) {
-                    e.printStackTrace();
+                    YTDLog.log(e);
                 }
             }else {
                 scriptEngine.put(key,YTDParseUtil.parseDouble(variables.get(key)));
@@ -68,9 +70,24 @@ public class YTDScriptEngineManager {
         try {
             res = (Boolean)jsInvoke.invokeFunction("caculateFormula", new Object[] { formula });
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return res;
     }
 
+    /**
+     * 是否数字
+     * @param str
+     * @return
+     */
+    public boolean isNumberJavaScriptWithFormula(String str) {
+        Invocable jsInvoke = (Invocable) scriptEngine;
+        boolean res = false;
+        try {
+            res = (Boolean)jsInvoke.invokeFunction("isNumber", new Object[] { str });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
 }

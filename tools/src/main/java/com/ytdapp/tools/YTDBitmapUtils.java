@@ -220,14 +220,14 @@ public class YTDBitmapUtils {
                 os.flush();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
             return false;
         } finally {
             if (os != null) {
                 try {
                     os.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    YTDLog.log(e);
                 }
             }
         }

@@ -48,6 +48,14 @@ public class YTDImgLoader {
             public void onLoadCleared(@Nullable Drawable placeholder) {
 
             }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
+                if (listener != null) {
+                    listener.callback(null);
+                }
+            }
         });
     }
 
@@ -80,7 +88,6 @@ public class YTDImgLoader {
         Glide.with(imageView.getContext())
                 .asBitmap()
                 .load(path)
-                .centerCrop()
                 .placeholder(R.mipmap.ic_place_holder)
                 .error(R.mipmap.ic_error)
                 .dontAnimate()
@@ -100,7 +107,6 @@ public class YTDImgLoader {
         Glide.with(imageView.getContext())
                 .asBitmap()
                 .load(path)
-                .centerCrop()
                 .placeholder(R.mipmap.ic_place_holder)
                 .error(R.mipmap.ic_error)
                 .dontAnimate()
@@ -116,12 +122,17 @@ public class YTDImgLoader {
                     }
 
                     @Override
-                    public void onLoadCleared(@Nullable Drawable placeholder) {
-
+                    public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                        super.onLoadFailed(errorDrawable);
                         if (listener != null) {
                             listener.onResourceReady(null);
                             imageView.requestLayout();
                         }
+                    }
+
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
+
                     }
                 });
     }
@@ -169,7 +180,7 @@ public class YTDImgLoader {
     /**
      * 清理内存缓存，要在主线程
      */
-    public static void clearMemaryCache() {
+    public static void clearMemoryCache() {
         if (ContextUtil.getContext() != null) {
             Glide.get(ContextUtil.getContext()).clearMemory();
         }

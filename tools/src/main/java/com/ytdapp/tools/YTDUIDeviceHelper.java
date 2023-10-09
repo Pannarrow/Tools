@@ -15,6 +15,8 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.ytdapp.tools.log.YTDLog;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -38,7 +40,7 @@ public class YTDUIDeviceHelper {
     private final static String FLYME = "flyme";
     private final static String ZTEC2016 = "zte c2016";
     private final static String ZUKZ1 = "zuk z1";
-    private final static String MEIZUBOARD[] = {"m9", "M9", "mx", "MX"};
+    private final static String[] MEIZUBOARD = {"m9", "M9", "mx", "MX"};
     private final static String POWER_PROFILE_CLASS = "com.android.internal.os.PowerProfile";
     private final static String CPU_FILE_PATH_0 = "/sys/devices/system/cpu/";
     private final static String CPU_FILE_PATH_1 = "/sys/devices/system/cpu/possible";
@@ -78,17 +80,17 @@ public class YTDUIDeviceHelper {
                 fileInputStream = new FileInputStream(new File(Environment.getRootDirectory(), "build.prop"));
                 properties.load(fileInputStream);
             } catch (Exception e) {
-                e.printStackTrace();
+                YTDLog.log(e);
             } finally {
                 try {
                     fileInputStream.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    YTDLog.log(e);
                 }
             }
         }
 
-        Class<?> clzSystemProperties = null;
+        Class<?> clzSystemProperties;
         try {
             clzSystemProperties = Class.forName("android.os.SystemProperties");
             Method getMethod = clzSystemProperties.getDeclaredMethod("get", String.class);
@@ -97,7 +99,7 @@ public class YTDUIDeviceHelper {
             //flyme
             sFlymeVersionName = getLowerCaseName(properties, getMethod, KEY_FLYME_VERSION_NAME);
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
     }
 
@@ -393,7 +395,7 @@ public class YTDUIDeviceHelper {
             try {
                 is.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                YTDLog.log(e);
             }
         }
     }
@@ -431,7 +433,7 @@ public class YTDUIDeviceHelper {
             int property = (Integer) method.invoke(manager, op, Binder.getCallingUid(), context.getPackageName());
             return AppOpsManager.MODE_ALLOWED == property;
         } catch (Exception e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return false;
     }

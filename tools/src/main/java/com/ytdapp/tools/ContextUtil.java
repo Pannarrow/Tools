@@ -1,13 +1,10 @@
 package com.ytdapp.tools;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 
 public class ContextUtil {
 
@@ -24,22 +21,6 @@ public class ContextUtil {
      */
     public static void init(Context c){
         context = c.getApplicationContext();
-    }
-
-    /**
-     * 检查权限
-     * @param permission 权限名
-     * @return
-     */
-    public static boolean checkSelfPermission(@NonNull String permission){
-        if (context == null) {
-            return false;
-        }
-
-        if (ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        return false;
     }
 
     /**

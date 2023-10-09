@@ -3,6 +3,8 @@ package com.ytdapp.tools;
 import android.text.TextUtils;
 
 
+import com.ytdapp.tools.log.YTDLog;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.MessageDigest;
@@ -80,15 +82,22 @@ public class YTDStringUtils {
      */
     public static String getFileName(String filePath) {
         return filePath.substring(filePath.lastIndexOf("/") + 1);
-//        return fileNameNow.substring(0,fileNameNow.lastIndexOf("."));
     }
 
+    /**
+     * 获取文件名不带后缀
+     * @param filePath
+     * @return
+     */
+    public static String getFileNameNoExtension(String filePath) {
+        return filePath.substring(filePath.lastIndexOf("/") + 1, filePath.lastIndexOf("."));
+    }
 
     public static String md5(String string) {
         if (TextUtils.isEmpty(string)) {
             return "";
         }
-        MessageDigest md5 = null;
+        MessageDigest md5;
         try {
             md5 = MessageDigest.getInstance("MD5");
             byte[] bytes = md5.digest(string.getBytes());
@@ -102,7 +111,7 @@ public class YTDStringUtils {
             }
             return result.toUpperCase();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return "";
     }

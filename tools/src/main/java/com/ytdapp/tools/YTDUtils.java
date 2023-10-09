@@ -105,7 +105,7 @@ public class YTDUtils {
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             name = info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
 
         return name;
@@ -120,7 +120,7 @@ public class YTDUtils {
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             return info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return "";
     }
@@ -134,7 +134,7 @@ public class YTDUtils {
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
             return String.valueOf(info.versionCode);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return "";
     }
@@ -145,12 +145,12 @@ public class YTDUtils {
     public static String getAppName(Context context) {
         String name = "";
         PackageManager packageManager = context.getPackageManager();
-        ApplicationInfo applicationInfo = null;
+        ApplicationInfo applicationInfo;
         try {
             applicationInfo = packageManager.getApplicationInfo(context.getApplicationInfo().packageName, 0);
             name = (String) (applicationInfo != null ? packageManager.getApplicationLabel(applicationInfo) : name);
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         }
         return name;
     }
@@ -168,7 +168,7 @@ public class YTDUtils {
             reader.close();
             return sbf.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            YTDLog.log(e);
         } finally {
             if (reader != null) {
                 try {
@@ -209,6 +209,26 @@ public class YTDUtils {
         ScriptEngine engine = manager.getEngineByName("javascript");
         try {
             return (boolean) engine.eval(string);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public static double executeJS(String string) {
+        double result = 0d;
+        if (TextUtils.isEmpty(string)){
+            return result;
+        }
+        string = string.replace(" ","");
+        if (string.length() == 0){
+            return result;
+        }
+
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("javascript");
+        try {
+            return Double.parseDouble(String.valueOf(engine.eval(string)));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -270,7 +290,6 @@ public class YTDUtils {
     public static void openKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
     }
 
     /**
